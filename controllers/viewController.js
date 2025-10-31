@@ -4,6 +4,7 @@ const appError = require("../utils/appError");
 
 module.exports.getOverview = catchAsync(async (req, res) => {
   const stories = await Story.find();
+  console.log(`someone visisted the home page`);
   res.status(200).render(`overview`, { title: `Overview`, stories });
 });
 
@@ -23,11 +24,13 @@ module.exports.getStory = catchAsync(async (req, res, next) => {
 
 module.exports.getStories = catchAsync(async (req, res) => {
   const stories = await Story.find();
+  console.log(`someone visisted the stories`);
   res.status(200).render(`stories`, { title: `All Stories`, stories });
 });
 
 module.exports.getContact = catchAsync(async (req, res) => {
   const stories = await Story.find();
+  console.log(`someone visisted the contact page`);
   res.status(200).render(`contact`, { title: `Contact`, stories });
 });
 
