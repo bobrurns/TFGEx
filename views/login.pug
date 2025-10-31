@@ -1,0 +1,15 @@
+extends base
+
+block content 
+  main.main
+    .login-form
+      h2.heading-secondary Admin Login
+      form.form
+        .form__group
+          label.form__label(for='user') User
+          input#user.form__input(type='Username', placeholder='Username', required)
+        .form__group.ma-bt-md
+          label.form__label(for='password') Password
+          input#password.form__input(type='password',   placeholder='••••••••', required, minlength='8')
+        .form__group
+          button.btn Login

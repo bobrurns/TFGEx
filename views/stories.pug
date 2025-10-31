@@ -1,0 +1,11 @@
+extends base
+
+block content
+  .card-container
+    each story in stories
+      a.card(href=`/story/${story.storyId}`)
+        h4.card__financial-impact= `Financial Impact: $${story.financialImpact.toLocaleString()}`
+        p.card__promise= `${story.promised}`
+        p.card__realization= `${story.realization}`
+        p.card__storyId= `${story.storyId}`
+        span.card__link Read More ➔ 

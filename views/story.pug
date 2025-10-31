@@ -1,0 +1,70 @@
+extends base
+
+block content
+  .story-detail-container
+    h1.story-detail__heading The First Group Victim Story
+    .story-detail__section
+      h2.story-detail__subheading First Contact
+      p.story-detail__text= story.firstContact
+    .story-detail__section
+      h2.story-detail__subheading What Was Promised
+      p.story-detail__text= story.promised
+    .story-detail__section
+      h2.story-detail__subheading Realization
+      p.story-detail__text= story.realization
+    .story-detail__section
+      h2.story-detail__subheading Financial Impact
+      p.story-detail__impact $#{story.financialImpact}
+  
+    .story-detail__section
+      h2.story-detail__subheading Financial Records
+      if story.financialRecords.length === 0 || story.financialRecords[0] === 'pending_first_submission'
+        p.story-detail__placeholder No financial records submitted
+      else
+        .story-detail__files-grid
+          each file, index in story.financialRecords
+            .story-detail__file-card(data-file=`/docs/financial/${file}` data-gallery='financial')
+              if file.endsWith('.pdf')
+                .file-icon 📄
+                p.file-name= file
+              else
+                img.file-thumbnail(src=`/docs/financial/${file}` alt='Financial Record')
+    
+    .story-detail__section
+      h2.story-detail__subheading Communication Records
+      if story.communicationRecords.length === 0 || story.communicationRecords[0] === 'pending_first_submission'
+        p.story-detail__placeholder No communication records submitted
+      else
+        .story-detail__files-grid
+          each file, index in story.communicationRecords
+            .story-detail__file-card(data-file=`/docs/communication/${file}` data-gallery='communication')
+              if file.endsWith('.pdf')
+                .file-icon 📄
+                p.file-name= file
+              else
+                img.file-thumbnail(src=`/docs/communication/${file}` alt='Communication Record')
+    
+    .story-detail__section
+      h2.story-detail__subheading Contracts & Agreements
+      if story.contractsAgreements.length === 0 || story.contractsAgreements[0] === 'pending_first_submission'
+        p.story-detail__placeholder No contracts or agreements submitted
+      else
+        .story-detail__files-grid
+          each file, index in story.contractsAgreements
+            .story-detail__file-card(data-file=`/docs/contracts/${file}` data-gallery='contracts')
+              if file.endsWith('.pdf')
+                .file-icon 📄
+                p.file-name= file
+              else
+                img.file-thumbnail(src=`/docs/contracts/${file}` alt='Contract')
+
+  // File Viewer Modal
+  #fileModal.file-modal
+    .file-modal__content
+      span.file-modal__close &times;
+      button.file-modal__prev ‹
+      button.file-modal__next ›
+      .file-modal__viewer
+        img#modalImage.file-modal__image(style='display:none')
+        iframe#modalPDF.file-modal__pdf(style='display:none')
+      p.file-modal__caption

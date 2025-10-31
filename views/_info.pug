@@ -1,0 +1,3 @@
+.info
+  p.info__stories-quantity= `Total Stories: ${stories ? stories.length : 0 }`
+  p.info__total-impact= `Total Impact To Be Resolved: $${stories ? stories.reduce((sum, story) =>sum + story.financialImpact, 0).toLocaleString() : 0}`

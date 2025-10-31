@@ -1,0 +1,74 @@
+extends base
+
+block content
+  main.main
+    .dashboard-container
+      h1.dashboard__heading Admin Dashboard
+
+      .dashboard__actions
+        button.btn.btn--upload#uploadBtn Upload New Story
+
+      .dashboard__search
+        input.dashboard__search-input#searchInput(type='text' placeholder='Search by Story ID or Email.')
+        button.btn.btn--search#searchBtn Search
+
+      .dashboard__results#resultsContainer
+        p.dashboard__placeholder No stories to display. Use the search bar or upload a new story.
+
+  // Upload Modal
+  .modal#uploadModal
+    .modal__content
+      span.modal__close &times;
+      h2.modal__heading Upload New Story
+      form.form.form--upload#uploadForm
+        .form__group
+          label.form__label(for='firstContact') First Contact
+          textarea#firstContact.form__input(name='firstContact' required rows='3')
+        .form__group
+          label.form__label(for='promised') What Was Promised
+          textarea#promised.form__input(name='promised' required rows='3')
+        .form__group
+          label.form__label(for='realization') Realization
+          textarea#realization.form__input(name='realization' required rows='3')
+        .form__group
+          label.form__label(for='financialImpact') Financial Impact ($)
+          input#financialImpact.form__input(type='number' name='financialImpact' required)
+        .form__group
+          label.form__label(for='financialRecords') Financial Records
+          input#financialRecords.form__input(type='file' required  name='financialRecords' accept='.pdf,.zip' multiple)
+        .form__group
+          label.form__label(for='communicationRecords') Communication Records
+          input#communicationRecords.form__input(type='file' name='communicationRecords' accept='image/*,.pdf,.zip' multiple)
+        .form__group
+          label.form__label(for='contractsAgreements') Contracts & Agreements
+          input#contractsAgreements.form__input(type='file' name='contractsAgreements' accept='.pdf,.zip' multiple)
+        .form__group
+          label.form__label(for='victimContact') Victim Email
+          input#victimContact.form__input(type='email' name='victimContact' required )
+        .form__group
+          button.btn.btn--upload(type='submit') Upload Story
+
+  // Update Modal
+  .modal#updateModal
+    .modal__content
+      span.modal__close.modal__close--update &times;
+      h2.modal__heading Update Story
+      form.form.form--update#updateForm
+        input#updateStoryId(type='hidden' name='storyId')
+        .form__group
+          label.form__label(for='updateFirstContact') First Contact
+          textarea#updateFirstContact.form__input(name='firstContact' required rows='3')
+        .form__group
+          label.form__label(for='updatePromised') What Was Promised
+          textarea#updatePromised.form__input(name='promised' required rows='3')
+        .form__group
+          label.form__label(for='updateRealization') Realization
+          textarea#updateRealization.form__input(name='realization' required rows='3')
+        .form__group
+          label.form__label(for='updateFinancialImpact') Financial Impact ($)
+          input#updateFinancialImpact.form__input(type='number' name='financialImpact' required)
+        .form__group
+          label.form__label(for='updateVictimContact') Victim Email
+          input#updateVictimContact.form__input(type='email' name='victimContact' required)
+        .form__group
+          button.btn.btn--upload(type='submit') Update Story
