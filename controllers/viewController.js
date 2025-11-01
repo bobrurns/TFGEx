@@ -4,19 +4,20 @@ const appError = require("../utils/appError");
 
 module.exports.getOverview = catchAsync(async (req, res) => {
   const stories = await Story.find();
-  console.log(`someone visisted the home page`);
+  console.log(`someone visited the home page`);
   res.status(200).render(`overview`, { title: `Overview`, stories });
 });
 
 module.exports.getHowTheyWork = catchAsync(async (req, res) => {
   const stories = await Story.find();
+  console.log(`someone visited the how they work page`);
   res.status(200).render(`how-they-work`, { title: `How they work`, stories });
 });
 
 module.exports.getStory = catchAsync(async (req, res, next) => {
   const story = await Story.findOne({ storyId: req.params.id });
   const stories = await Story.find();
-  console.log(story);
+  console.log(`someone visited story page: ${req.params.id}`);
   if (!story) return next(new appError(`This story does not exist`, 404));
 
   res.status(200).render(`story`, { title: `Story`, story, stories });
@@ -24,23 +25,25 @@ module.exports.getStory = catchAsync(async (req, res, next) => {
 
 module.exports.getStories = catchAsync(async (req, res) => {
   const stories = await Story.find();
-  console.log(`someone visisted the stories`);
+  console.log(`someone visited the stories`);
   res.status(200).render(`stories`, { title: `All Stories`, stories });
 });
 
 module.exports.getContact = catchAsync(async (req, res) => {
   const stories = await Story.find();
-  console.log(`someone visisted the contact page`);
+  console.log(`someone visited the contact page`);
   res.status(200).render(`contact`, { title: `Contact`, stories });
 });
 
 module.exports.getDash = catchAsync(async (req, res) => {
   const stories = await Story.find();
+  console.log(`someone visited the admin dashboard page`);
   res.status(200).render(`dashboard`, { title: `Admin Dashboard`, stories });
 });
 
 module.exports.getLogin = catchAsync(async (req, res) => {
   const stories = await Story.find();
+  console.log(`someone visited the login page`);
 
   const csp = [
     "default-src 'self';",

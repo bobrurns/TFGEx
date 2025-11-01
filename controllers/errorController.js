@@ -7,7 +7,6 @@ const handleCastErrorDB = (err) => {
 
 const handleDuplicateFieldDB = (err) => {
   const value = err.cause.errmsg.match(/(["'])(.*?)\1/g);
-  console.log(value);
   const message = `Duplicate field value: ${value}`;
   return new AppError(message, 400);
 };
@@ -26,7 +25,6 @@ const handleExpiredTokenErrorDB = () =>
 
 const sendDevError = (err, req, res) => {
   if (req.originalUrl.startsWith(`/api`)) {
-    console.log(err);
     return res.status(err.statusCode).json({
       status: err.status,
       error: err,
@@ -55,7 +53,6 @@ const sendProdError = (err, req, res) => {
       .status(err.statusCode)
       .render(`error`, { title: `ERROR`, message: err.message });
   }
-  console.log(err);
   return res.status(500).json({ status: `error`, message: `SERVERERROR.` });
 };
 

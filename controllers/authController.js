@@ -29,7 +29,6 @@ const createSendToken = (user, statusCode, res) => {
   user.password = undefined;
 
   res.status(statusCode).json({ status: `success`, token, data: user });
-  console.log(`cookie set`);
 };
 
 exports.logIn = catchAsync(async (req, res, next) => {
@@ -44,7 +43,6 @@ exports.logIn = catchAsync(async (req, res, next) => {
   if (!user || !(await user.correctPassword(password))) {
     return next(new AppError(`Incorrect email or password`, 401));
   }
-  console.log(`Admin login success: ${new Date().toLocaleString()}`);
   createSendToken(user, 200, res);
 });
 

@@ -11,8 +11,6 @@ exports.deleteOne = (Model) =>
     }
 
     res.status(204).json({ status: `success`, data: null });
-
-    console.log(`Story marked as paid off.`);
   });
 
 exports.updateOne = (Model) =>
@@ -30,7 +28,6 @@ exports.updateOne = (Model) =>
     }
 
     res.status(200).json({ status: `success`, data: { doc } });
-    console.log(`Updated data successfully`);
   });
 
 exports.createOne = (Model) =>
